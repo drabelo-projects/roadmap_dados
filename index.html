@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roadmap de Estudos & Portfólio - Análise de Dados</title>
+  <title>Data Analyst & BI Roadmap | Portfólio</title>
   <style>
     :root {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --card-hover: #273549;
-      --border: #334155;
-      --text: #f8fafc;
-      --muted: #94a3b8;
+      --bg: #090d16;
+      --surface: #111827;
+      --surface-hover: #1f293d;
+      --border: #273043;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
       --accent: #38bdf8;
-      --accent-dark: #0284c7;
-      --success: #22c55e;
-      --badge-bg: rgba(56, 189, 248, 0.15);
+      --accent-subtle: rgba(56, 189, 248, 0.1);
+      --success: #10b981;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     * {
@@ -25,537 +25,613 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: var(--font);
       background-color: var(--bg);
-      color: var(--text);
+      color: var(--text-primary);
       line-height: 1.6;
-      padding: 16px;
+      padding: 24px 16px;
     }
 
-    .container {
-      max-width: 900px;
+    .wrapper {
+      max-width: 960px;
       margin: 0 auto;
     }
 
+    /* Header Profissional */
     header {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
+      border-radius: 8px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
       margin-bottom: 20px;
     }
 
-    h1 {
+    .title-group h1 {
       font-size: 1.5rem;
-      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
       color: #fff;
+      margin-bottom: 6px;
     }
 
-    .subtitle {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 18px;
+    .title-group p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
 
-    .progress-wrapper {
-      background: #0f172a;
-      border-radius: 10px;
-      padding: 14px;
+    .status-badge {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      background: var(--accent-subtle);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 4px;
+    }
+
+    /* Barra de Progresso Minimalista */
+    .progress-container {
+      background: var(--bg);
       border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
     }
 
-    .progress-header {
+    .progress-info {
       display: flex;
       justify-content: space-between;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 8px;
+      color: var(--text-secondary);
     }
 
-    .progress-bar-bg {
-      background: #334155;
-      height: 10px;
+    .progress-info span:last-child {
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      background: var(--border);
+      height: 6px;
       border-radius: 999px;
       overflow: hidden;
     }
 
-    .progress-bar-fill {
-      background: linear-gradient(90deg, var(--accent), var(--success));
+    .progress-fill {
+      background: var(--accent);
       height: 100%;
       width: 0%;
-      transition: width 0.3s ease;
+      transition: width 0.4s ease;
     }
 
-    .tabs {
+    /* Sistema de Abas Limpo */
+    .nav-tabs {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
     }
 
-    .tab-btn {
-      flex: 1;
-      padding: 12px 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.95rem;
+    .tab-trigger {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 6px;
       cursor: pointer;
       transition: all 0.2s;
     }
 
-    .tab-btn.active {
-      background: var(--accent-dark);
-      color: #fff;
-      border-color: var(--accent);
+    .tab-trigger:hover {
+      color: var(--text-primary);
+      background: var(--surface);
     }
 
-    .tab-content {
+    .tab-trigger.active {
+      background: var(--surface);
+      color: var(--text-primary);
+      border-color: var(--border);
+    }
+
+    .tab-pane {
       display: none;
     }
 
-    .tab-content.active {
+    .tab-pane.active {
       display: block;
     }
 
-    .phase-card {
-      background: var(--card);
+    /* Cards de Fase & Projetos */
+    .card {
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 8px;
+      padding: 24px;
       margin-bottom: 16px;
     }
 
-    .phase-header {
+    .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 8px;
+      align-items: center;
       margin-bottom: 12px;
     }
 
-    .phase-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .badge {
-      background: var(--badge-bg);
-      color: var(--accent);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.78rem;
+    .card-title {
+      font-size: 1.05rem;
       font-weight: 600;
+      color: #fff;
     }
 
-    .module-ref {
+    .card-tag {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .context-box {
       font-size: 0.85rem;
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.6);
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-bottom: 14px;
-      border-left: 3px solid var(--accent);
+      color: var(--text-secondary);
+      background: var(--bg);
+      border-left: 2px solid var(--accent);
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      border-radius: 0 4px 4px 0;
     }
 
+    /* Checklist Estilizada */
     .checklist {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .checklist li {
+    .checklist-item {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      background: rgba(15, 23, 42, 0.4);
-      padding: 10px 12px;
-      border-radius: 8px;
+      gap: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: border-color 0.2s;
     }
 
-    .checklist li:hover {
-      background: var(--card-hover);
+    .checklist-item:hover {
+      border-color: #4b5563;
     }
 
-    .checklist input[type="checkbox"] {
-      margin-top: 4px;
-      width: 18px;
-      height: 18px;
-      accent-color: var(--success);
+    .checklist-item input[type="checkbox"] {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: var(--surface);
+      margin-top: 2px;
       cursor: pointer;
-      flex-shrink: 0;
+      position: relative;
     }
 
-    .checklist label {
+    .checklist-item input[type="checkbox"]:checked {
+      background: var(--success);
+      border-color: var(--success);
+    }
+
+    .checklist-item input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 9px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .checklist-item label {
+      font-size: 0.9rem;
+      color: var(--text-primary);
       cursor: pointer;
-      font-size: 0.93rem;
       flex: 1;
     }
 
-    .checklist li.done label {
+    .checklist-item.done label {
+      color: var(--text-secondary);
       text-decoration: line-through;
-      color: var(--muted);
     }
 
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 18px;
-    }
-
-    .project-card h3 {
-      color: var(--accent);
-      font-size: 1.15rem;
-      margin-bottom: 6px;
-    }
-
-    .stack-tags {
+    /* Tags Técnicas */
+    .tech-stack {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
-    .tag {
-      background: #0f172a;
+    .tech-pill {
+      font-size: 0.75rem;
+      font-family: monospace;
+      background: var(--bg);
+      color: var(--accent);
       border: 1px solid var(--border);
-      color: #e2e8f0;
-      font-size: 0.78rem;
-      padding: 3px 9px;
-      border-radius: 6px;
+      padding: 3px 8px;
+      border-radius: 4px;
     }
 
     .project-steps {
       padding-left: 18px;
-      margin-bottom: 14px;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
     }
 
     .project-steps li {
       margin-bottom: 6px;
     }
 
-    .linkedin-box {
-      background: #0f172a;
-      border: 1px dashed var(--accent);
-      border-radius: 8px;
-      padding: 14px;
-      margin-top: 12px;
+    /* Caixa de Copiar Código / Post */
+    .snippet-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 14px;
     }
 
-    .linkedin-box-header {
+    .snippet-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--accent);
+      margin-bottom: 10px;
     }
 
-    .copy-btn {
-      background: var(--accent-dark);
-      color: #fff;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-size: 0.78rem;
+    .snippet-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .btn-copy {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 4px;
       cursor: pointer;
+      transition: background 0.2s;
     }
 
-    .linkedin-text {
-      font-size: 0.85rem;
-      color: #cbd5e1;
-      white-space: pre-line;
+    .btn-copy:hover {
+      background: var(--surface-hover);
     }
 
-    .reset-btn {
+    .snippet-content {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    .actions-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 16px;
+    }
+
+    .btn-reset {
       background: transparent;
       border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 8px 14px;
-      border-radius: 8px;
+      color: var(--text-secondary);
       font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 6px;
       cursor: pointer;
-      margin-top: 10px;
     }
 
-    .reset-btn:hover {
-      color: #fff;
+    .btn-reset:hover {
+      color: #ef4444;
       border-color: #ef4444;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wrapper">
     <header>
-      <h1>Roadmap: Analista de Dados & BI</h1>
-      <p class="subtitle">Trilha personalizada cruzando os requisitos da vaga com a ementa Xperiun (Plataforma Ultra & AI Champion).</p>
+      <div class="header-top">
+        <div class="title-group">
+          <h1>Roadmap de Estudos & Portfólio</h1>
+          <p>Especialização em Análise de Dados & BI — Currículo Técnico Integrado</p>
+        </div>
+        <div class="status-badge">Ativo</div>
+      </div>
       
-      <div class="progress-wrapper">
-        <div class="progress-header">
-          <span>Progresso Geral dos Estudos</span>
+      <div class="progress-container">
+        <div class="progress-info">
+          <span>Progresso Geral</span>
           <span id="progress-text">0% (0/15)</span>
         </div>
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="progress-bar"></div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-bar"></div>
         </div>
       </div>
     </header>
 
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('roadmap', this)">1. Trilha de Estudos (5 Fases)</button>
-      <button class="tab-btn" onclick="switchTab('projects', this)">2. 3 Projetos para LinkedIn</button>
+    <div class="nav-tabs">
+      <button class="tab-trigger active" onclick="switchTab('roadmap', this)">Trilha de Estudos</button>
+      <button class="tab-trigger" onclick="switchTab('projects', this)">Projetos de Portfólio</button>
     </div>
 
-    <!-- ABA 1: ROADMAP -->
-    <div id="roadmap" class="tab-content active">
+    <!-- ABA 1: TRILHA -->
+    <div id="roadmap" class="tab-pane active">
       
       <!-- FASE 1 -->
-      <div class="phase-card">
-        <div class="phase-header">
-          <span class="phase-title">Fase 1: Banco de Dados & SQL Avançado</span>
-          <span class="badge">Prioridade Máxima</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">01. Banco de Dados & SQL Avançado</span>
+          <span class="card-tag">Fase 1</span>
         </div>
-        <div class="module-ref">
-          <strong>Onde estudar na Xperiun:</strong> Trilha Banco de Dados & SQL (Raciocínio Lógico, Banco de Dados e Linguagem SQL, Data Warehouse com Apache HOP)[cite: 1].
+        <div class="context-box">
+          Foco em modelagem relacional, agregações avançadas e manipulação estruturada de dados.
         </div>
         <ul class="checklist">
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-1">
             <label for="task-1">Dominar JOINs complexos, Subqueries e CTEs (Common Table Expressions).</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-2">
             <label for="task-2">Aplicar Window Functions (ROW_NUMBER, RANK, LAG, LEAD, OVER/PARTITION BY).</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-3">
-            <label for="task-3">Praticar otimização de queries e estruturação de tabelas Fato e Dimensão (Data Warehouse).</label>
+            <label for="task-3">Praticar otimização de queries e estruturação de tabelas Fato e Dimensão.</label>
           </li>
         </ul>
       </div>
 
       <!-- FASE 2 -->
-      <div class="phase-card">
-        <div class="phase-header">
-          <span class="phase-title">Fase 2: Cloud Data Warehousing (Google BigQuery)</span>
-          <span class="badge">Requisito Cloud</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">02. Cloud Data Warehousing (Google BigQuery)</span>
+          <span class="card-tag">Fase 2</span>
         </div>
-        <div class="module-ref">
-          <strong>Onde estudar:</strong> Aplicar a base de SQL da Xperiun direto no Sandbox gratuito do Google Cloud Platform (GCP)[cite: 1, 14].
+        <div class="context-box">
+          Processamento de grandes volumes de dados na nuvem e exploração de bases reais de e-commerce.
         </div>
         <ul class="checklist">
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-4">
-            <label for="task-4">Criar conta gratuita no BigQuery Sandbox e explorar datasets públicos.</label>
+            <label for="task-4">Configurar e navegar no Google BigQuery Sandbox.</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-5">
-            <label for="task-5">Entender conceitos de Data Lake, particionamento e clusterização de tabelas no BigQuery.</label>
+            <label for="task-5">Compreender particionamento, clusterização e custos de consultas em nuvem.</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-6">
-            <label for="task-6">Explorar o schema de eventos do GA4 (Google Analytics 4) exportado para o BigQuery.</label>
+            <label for="task-6">Explorar o schema analítico do Google Analytics 4 (GA4) exportado para o BigQuery.</label>
           </li>
         </ul>
       </div>
 
       <!-- FASE 3 -->
-      <div class="phase-card">
-        <div class="phase-header">
-          <span class="phase-title">Fase 3: Python para Manipulação & Automação</span>
-          <span class="badge">Análise & Scripts</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">03. Python para Manipulação & Automação</span>
+          <span class="card-tag">Fase 3</span>
         </div>
-        <div class="module-ref">
-          <strong>Onde estudar na Xperiun:</strong> Trilha Python & Data Science (Python para Análise de Dados, Pandas para Análises Avançadas, APIs com Python, Estatística)[cite: 1].
+        <div class="context-box">
+          Análise exploratória de dados (EDA), limpeza de datasets e consumo de APIs utilizando Pandas.
         </div>
         <ul class="checklist">
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-7">
-            <label for="task-7">Manipular DataFrames com Pandas (limpeza, tratamento de nulos, groupby, merge).</label>
+            <label for="task-7">Manipular DataFrames com Pandas (limpeza, nulos, tratamentos, groupbys).</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-8">
-            <label for="task-8">Realizar análises estatísticas descritivas e exploratórias (EDA) em bases de e-commerce.</label>
+            <label for="task-8">Executar análises estatísticas descritivas em bases transacionais.</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-9">
-            <label for="task-9">Conectar scripts Python a APIs RESTful e tratar retornos em JSON.</label>
+            <label for="task-9">Consumir endpoints de APIs RESTful e estruturar respostas em JSON.</label>
           </li>
         </ul>
       </div>
 
       <!-- FASE 4 -->
-      <div class="phase-card">
-        <div class="phase-header">
-          <span class="phase-title">Fase 4: Orquestração de Pipelines & Automação</span>
-          <span class="badge">Diferencial Técnico</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">04. Orquestração & Engenharia de Pipelines</span>
+          <span class="card-tag">Fase 4</span>
         </div>
-        <div class="module-ref">
-          <strong>Onde estudar na Xperiun:</strong> N8N - Automação Inteligente, Apache HOP e Formação AI Champion (Claude Code & Orquestração de Agentes)[cite: 1, 2].
+        <div class="context-box">
+          Automação de fluxos de dados, estruturação de logs e monitoramento de rotinas.
         </div>
         <ul class="checklist">
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-10">
-            <label for="task-10">Compreender o conceito de DAGs, agendamento de tarefas e monitoramento de logs (noções de Apache Airflow).</label>
+            <label for="task-10">Compreender o conceito de DAGs e agendamento de rotinas (Apache Airflow / Apache HOP).</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-11">
-            <label for="task-11">Construir um fluxo automatizado de extração e tratamento de dados (via Python, N8N ou Apache HOP).</label>
+            <label for="task-11">Construir rotinas automatizadas de ingestão de dados ponta a ponta.</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-12">
-            <label for="task-12">Integrar agentes de IA para automatizar resumos e alertas de anomalias nos dados.</label>
+            <label for="task-12">Aplicar assistentes e agentes para automação de alertas e verificação de logs.</label>
           </li>
         </ul>
       </div>
 
       <!-- FASE 5 -->
-      <div class="phase-card">
-        <div class="phase-header">
-          <span class="phase-title">Fase 5: Visualização Estratégica & Storytelling</span>
-          <span class="badge">Visibilidade Executiva</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">05. Visualização & Storytelling Executivo</span>
+          <span class="card-tag">Fase 5</span>
         </div>
-        <div class="module-ref">
-          <strong>Onde estudar na Xperiun:</strong> Power BI (Essencial ao Avançado), Storytelling e Visualização de Dados, Design de Dashboard com Figma[cite: 1].
+        <div class="context-box">
+          Design de dashboards voltados para tomada de decisão e modelagem dimensional em ferramentas de BI.
         </div>
         <ul class="checklist">
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-13">
-            <label for="task-13">Dominar modelagem Star Schema e cálculos de KPIs de negócio com DAX avançado.</label>
+            <label for="task-13">Desenvolver modelagem Star Schema e regras de negócio complexas em DAX.</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-14">
-            <label for="task-14">Conectar o Google BigQuery ao Power BI e/ou Looker Studio.</label>
+            <label for="task-14">Conectar fontes em nuvem (BigQuery) diretamente a ambientes de Power BI / Looker Studio.</label>
           </li>
-          <li>
+          <li class="checklist-item">
             <input type="checkbox" id="task-15">
-            <label for="task-15">Aplicar princípios de Storytelling e layout executivo (Figma) para tomada de decisão.</label>
+            <label for="task-15">Aplicar diretrizes de UI/UX e hierarquia visual focadas em relatórios executivos.</label>
           </li>
         </ul>
       </div>
 
-      <button class="reset-btn" onclick="resetProgress()">Zerar progresso marcado</button>
+      <div class="actions-footer">
+        <button class="btn-reset" onclick="resetProgress()">Zerar marcações</button>
+      </div>
     </div>
 
-    <!-- ABA 2: PROJETOS LINKEDIN -->
-    <div id="projects" class="tab-content">
+    <!-- ABA 2: PROJETOS -->
+    <div id="projects" class="tab-pane">
       
       <!-- PROJETO 1 -->
-      <div class="project-card">
-        <h3>Projeto #01: Pipeline & Dashboard de E-commerce (GA4 + BigQuery)</h3>
-        <div class="stack-tags">
-          <span class="tag">Google BigQuery</span>
-          <span class="tag">SQL Avançado</span>
-          <span class="tag">GA4</span>
-          <span class="tag">Power BI / Looker Studio</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Pipeline & Análise de E-commerce (GA4 + BigQuery)</span>
+          <span class="card-tag">Projeto 01</span>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-pill">BigQuery</span>
+          <span class="tech-pill">SQL Avançado</span>
+          <span class="tech-pill">GA4 Schema</span>
+          <span class="tech-pill">BI Dashboard</span>
         </div>
         <ol class="project-steps">
-          <li>Acesse o dataset público oficial do <strong>Google Analytics 4 (ga4_obfuscated_sample_ecommerce)</strong> no BigQuery.</li>
-          <li>Crie queries em SQL (usando CTEs e UNNEST) para extrair funil de conversão, receita por canal de aquisição e ticket médio.</li>
-          <li>Salve uma tabela analítica tratada (camada Gold) e conecte diretamente no Power BI ou Looker Studio.</li>
-          <li>Monte um dashboard executivo com foco em tomada de decisão para times de Produto e E-commerce.</li>
+          <li>Acessar o dataset público do Google Analytics 4 (ga4_obfuscated_sample_ecommerce) no BigQuery.</li>
+          <li>Escrever queries analíticas utilizando UNNEST, CTEs e Window Functions para extrair funil de conversão.</li>
+          <li>Publicar a camada analítica limpa e integrá-la a uma ferramenta de visualização.</li>
         </ol>
-        <div class="linkedin-box">
-          <div class="linkedin-box-header">
-            <span>MODELO DE POST PARA FIXAR NO LINKEDIN</span>
-            <button class="copy-btn" onclick="copyText('post-1', this)">Copiar texto</button>
+        <div class="snippet-box">
+          <div class="snippet-header">
+            <span class="snippet-title">Modelo de Publicação (LinkedIn)</span>
+            <button class="btn-copy" onclick="copyText('post-1', this)">Copiar texto</button>
           </div>
-          <div class="linkedin-text" id="post-1">🚀 Projeto Prático: Análise de Funil de E-commerce com BigQuery, SQL e BI!
+          <div class="snippet-content" id="post-1">🚀 Projeto Prático: Análise de Funil de E-commerce com BigQuery, SQL e BI.
 
-Para resolver o desafio de transformar dados brutos de navegação em decisões estratégicas de produto, desenvolvi este projeto ponta a ponta utilizando a base real do Google Analytics 4 (GA4) no Google BigQuery.
+Para estruturar a análise de navegação e conversão de usuários, desenvolvi um pipeline analítico utilizando o dataset público do Google Analytics 4 (GA4) no BigQuery.
 
-🔍 O que foi feito:
-• Extração e tratamento de eventos aninhados (JSON/arrays) usando SQL avançado (UNNEST, CTEs e Window Functions) no BigQuery.
-• Estruturação de tabela analítica otimizada para leitura.
-• Conexão direta com ferramenta de BI para monitoramento de KPIs críticos: Taxa de Conversão, Ticket Médio e Receita por Canal.
+Principais entregas:
+• Tratamento de dados aninhados (arrays/JSON) com SQL avançado (UNNEST, CTEs e Window Functions).
+• Criação de tabelas analíticas otimizadas para monitoramento de KPIs (Taxa de Conversão, Ticket Médio e Receita por Canal).
+• Conexão de BI para suporte à decisão comercial.
 
-💡 Principal insight encontrado: [Insira aqui 1 descoberta dos seus dados, ex: Usuários vindos de busca orgânica têm ticket médio 18% maior, mas sofrem queda no checkout mobile].
+Repositório com scripts e documentação: [Link]
 
-🔗 Link do repositório com as queries SQL e documentação: [Seu Link]
-
-#AnaliseDeDados #BigQuery #SQL #GA4 #PowerBI #DataAnalytics</div>
+#DataAnalytics #BigQuery #SQL #GA4 #BusinessIntelligence</div>
         </div>
       </div>
 
       <!-- PROJETO 2 -->
-      <div class="project-card">
-        <h3>Projeto #02: Automação de Análise Exploratória & Relatórios com Python</h3>
-        <div class="stack-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">Estatística</span>
-          <span class="tag">Automação / IA</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Automação de Análise Exploratória (Python / Pandas)</span>
+          <span class="card-tag">Projeto 02</span>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Pandas</span>
+          <span class="tech-pill">Estatística</span>
+          <span class="tech-pill">Automação</span>
         </div>
         <ol class="project-steps">
-          <li>Utilize uma base pública de e-commerce (ex: <em>Brazilian E-Commerce Public Dataset by Olist</em>).</li>
-          <li>Crie um script em Python com <strong>Pandas</strong> para automatizar a limpeza de dados, tratamento de datas e cálculo de métricas estatísticas (média, mediana, dispersão de atrasos de entrega).</li>
-          <li>Gere gráficos automáticos de correlação (ex: impacto do atraso na nota de avaliação do cliente).</li>
-          <li>Suba o notebook comentado (`.ipynb`) e o script limpo (`.py`) no GitHub.</li>
+          <li>Utilizar bases transacionais públicas (ex: Olist E-commerce).</li>
+          <li>Escrever scripts em Python para tratamento automatizado de nulos, conversão de tipos e agregações estatísticas.</li>
+          <li>Gerar relatórios automatizados de correlação entre prazos logísticos e notas de avaliação.</li>
         </ol>
-        <div class="linkedin-box">
-          <div class="linkedin-box-header">
-            <span>MODELO DE POST PARA FIXAR NO LINKEDIN</span>
-            <button class="copy-btn" onclick="copyText('post-2', this)">Copiar texto</button>
+        <div class="snippet-box">
+          <div class="snippet-header">
+            <span class="snippet-title">Modelo de Publicação (LinkedIn)</span>
+            <button class="btn-copy" onclick="copyText('post-2', this)">Copiar texto</button>
           </div>
-          <div class="linkedin-text" id="post-2">🐍 Automatizando Análises Estatísticas e Diagnóstico de Operações com Python e Pandas!
+          <div class="snippet-content" id="post-2">🐍 Automação de Análise Estatística e Diagnóstico Logístico com Python e Pandas.
 
-Planilhas manuais não escalam quando lidamos com dezenas de milhares de pedidos. Neste projeto, construí um pipeline automatizado em Python para diagnosticar gargalos logísticos e satisfação de clientes no e-commerce.
+Desenvolvi um script automatizado para processar grandes volumes de pedidos de e-commerce, identificando gargalos operacionais e correlações entre atrasos de entrega e satisfação do cliente.
 
-⚙️ Etapas do projeto:
-• Ingestão e cruzamento de múltiplas tabelas relacionais usando Pandas.
-• Tratamento automatizado de dados faltantes e padronização de datas.
-• Análise estatística para medir a correlação entre tempo de entrega e avaliações negativas.
+Destaques técnicos:
+• Ingestão e cruzamento relacional via Pandas.
+• Tratamento automatizado de dados inconsistentes e padronização temporal.
+• Medição estatística de impacto nos índices de atendimento.
 
-📊 Resultado: Identificamos que pedidos com mais de X dias de atraso reduzem a nota média em Y%, permitindo priorizar rotas críticas.
+Código completo no GitHub: [Link]
 
-🔗 Código completo no GitHub: [Seu Link]
-
-#Python #Pandas #DataScience #AnaliseDeDados #Automacao #Estatistica</div>
+#Python #Pandas #DataAnalysis #Automation #DataScience</div>
         </div>
       </div>
 
       <!-- PROJETO 3 -->
-      <div class="project-card">
-        <h3>Projeto #03: Arquitetura de Data Warehouse & Monitoramento de Pipeline</h3>
-        <div class="stack-tags">
-          <span class="tag">Data Warehouse</span>
-          <span class="tag">Modelagem Dimensional</span>
-          <span class="tag">SQL</span>
-          <span class="tag">Orquestração / Logs</span>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Arquitetura de Data Warehouse & Camadas Analíticas</span>
+          <span class="card-tag">Projeto 03</span>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-pill">Data Warehouse</span>
+          <span class="tech-pill">Star Schema</span>
+          <span class="tech-pill">SQL</span>
+          <span class="tech-pill">Data Quality</span>
         </div>
         <ol class="project-steps">
-          <li>Desenhe a arquitetura de um Data Warehouse em 3 camadas (Bronze, Silver, Gold) para uma operação de varejo.</li>
-          <li>Escreva os scripts SQL de transformação entre as camadas, aplicando regras de qualidade de dados (Data Quality).</li>
-          <li>Crie uma tabela de controle/logs de execução para simular o monitoramento de pipelines (conceito aplicado no Apache Airflow).</li>
-          <li>Inclua um diagrama visual da arquitetura no README do GitHub.</li>
+          <li>Desenhar arquitetura em camadas (Bronze, Silver, Gold) para uma operação de varejo simulada.</li>
+          <li>Escrever scripts de transformação e aplicação de regras de integridade de dados (Data Quality).</li>
+          <li>Implementar tabelas de log de execução para simulação de monitoramento de pipelines.</li>
         </ol>
-        <div class="linkedin-box">
-          <div class="linkedin-box-header">
-            <span>MODELO DE POST PARA FIXAR NO LINKEDIN</span>
-            <button class="copy-btn" onclick="copyText('post-3', this)">Copiar texto</button>
+        <div class="snippet-box">
+          <div class="snippet-header">
+            <span class="snippet-title">Modelo de Publicação (LinkedIn)</span>
+            <button class="btn-copy" onclick="copyText('post-3', this)">Copiar texto</button>
           </div>
-          <div class="linkedin-text" id="post-3">🏗️ Arquitetura de Data Warehouse e Qualidade de Dados com SQL!
+          <div class="snippet-content" id="post-3">🏗️ Arquitetura de Data Warehouse e Governança de Dados com SQL.
 
-Um dashboard só é confiável se a engenharia e a modelagem por trás dele forem sólidas. Neste projeto, estruturei um Data Warehouse analítico aplicando a arquitetura Medalhão (Bronze, Silver e Gold).
+Estruturação de um ambiente analítico robusto utilizando a Arquitetura Medalhão (Bronze, Silver e Gold) com foco em confiabilidade de relatórios.
 
-🛠️ Destaques técnicos:
-• Modelagem Dimensional (Star Schema) focada em performance de consulta.
-• Scripts SQL para deduplicação, validação de tipos e regras de negócio.
-• Tabela de monitoramento de logs para rastrear falhas e garantir a integridade dos KPIs diários.
+Implementações:
+• Modelagem Dimensional (Star Schema) orientada à performance.
+• Scripts SQL para deduplicação, padronização e validação de regras de negócio.
+• Tabela de controle e auditoria de logs para rastreabilidade de pipelines.
 
-🔗 Confira a arquitetura e os scripts no GitHub: [Seu Link]
+Documentação e arquitetura no GitHub: [Link]
 
-#DataWarehouse #EngenhariaDeDados #SQL #ModelagemDeDados #BI #DataQuality</div>
+#DataEngineering #DataWarehouse #SQL #DataModeling #DataQuality</div>
         </div>
       </div>
 
@@ -563,7 +639,7 @@ Um dashboard só é confiável se a engenharia e a modelagem por trás dele fore
   </div>
 
   <script>
-    const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
 
@@ -572,13 +648,13 @@ Um dashboard só é confiável se a engenharia e a modelagem por trás dele fore
       let checkedCount = 0;
 
       checkboxes.forEach(cb => {
-        const li = cb.closest('li');
+        const parentLi = cb.closest('.checklist-item');
         if (cb.checked) {
           checkedCount++;
-          li.classList.add('done');
+          parentLi.classList.add('done');
           localStorage.setItem(cb.id, 'true');
         } else {
-          li.classList.remove('done');
+          parentLi.classList.remove('done');
           localStorage.setItem(cb.id, 'false');
         }
       });
@@ -596,10 +672,10 @@ Um dashboard só é confiável se a engenharia e a modelagem por trás dele fore
       cb.addEventListener('change', updateProgress);
     });
 
-    function switchTab(tabId, btn) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
+    function switchTab(paneId, btn) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-trigger').forEach(el => el.classList.remove('active'));
+      document.getElementById(paneId).classList.add('active');
       btn.classList.add('active');
     }
 
@@ -607,13 +683,13 @@ Um dashboard só é confiável se a engenharia e a modelagem por trás dele fore
       const text = document.getElementById(elementId).innerText;
       navigator.clipboard.writeText(text).then(() => {
         const original = btn.textContent;
-        btn.textContent = 'Copiado!';
+        btn.textContent = 'Copiado';
         setTimeout(() => btn.textContent = original, 2000);
       });
     }
 
     function resetProgress() {
-      if (confirm('Deseja desmarcar todos os itens concluídos?')) {
+      if (confirm('Deseja redefinir todo o progresso salvo?')) {
         checkboxes.forEach(cb => {
           cb.checked = false;
           localStorage.removeItem(cb.id);
